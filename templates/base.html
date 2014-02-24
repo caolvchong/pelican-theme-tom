@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{{ SITENAME }}{%endblock%}</title>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="author" content="Tom"/>
+    <link rel="shortcut icon" href="{{ SITEURL }}/static/images/favicon.gif" />
+
+    <link href="{{ SITEURL }}/feeds/all.atom.xml" rel="alternate" title="Atom Rss" type="application/atom+xml" />
+
+    <link href="{{ SITEURL }}/static/themes/default/css/base.css" rel="stylesheet"/>
+
+    {% block head %}{% endblock %}
+
+    <!--[if lt IE 9]>
+    <script src="{{ SITEURL }}/static/js/html5shiv.js"></script>
+    <script src="{{ SITEURL }}/static/js/css3-mediaqueries.js"></script>
+    <![endif]-->
+    <script src="{{ SITEURL }}/static/js/seajs/sea.js?_v={{ VERSION }}"></script>
+    <script src="{{ SITEURL }}/static/js/config.js?_v={{ VERSION }}"></script>
+</head>
+<body>
+
+<header>
+    <div class="logo"><a href="/" title="Tom's blog">Tom</a></div>
+    <nav>
+        <ul>
+            <li><a href="/" title="首页"><i class="fa fa-home fa-fw"></i>首页</a></li>
+            <li><a href="{{ SITEURL }}/archives.html" title="归档"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+            <li><a href="{{ SITEURL }}/about.html" title="关于"><i class="fa fa-user-md fa-fw"></i>关于</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="main">
+    <aside class="left">
+        <section class="introduce">
+            <img src="{{ SITEURL }}/static/images/avatar.jpg" alt="头像"/>
+
+            <div class="nick"><span>Tom</span></div>
+            <p>小时候理想是成为生物学家、作家、足球运动员，现在是一名前端工程师。</p>
+            <address>
+                <details open="open">
+                    <summary>联系方式</summary>
+                    <ul>
+                        <li><i class="fa fa-envelope"></i> caolvchong[at]gmail.com</li>
+                        <li><i class="fa fa-github"></i> <a href="https://github.com/caolvchong" title="草履虫的github">github.com/caolvchong</a></li>
+                        <li><i class="fa fa-twitter"></i> <a href="https://twitter.com/caolvchong" title="草履虫的twitter">twitter.com/caolvchong</a></li>
+                        <li><i class="fa fa-weibo"></i> <a href="http://ecma.weibo.com" title="草履虫的微博">ecma.weibo.com</a></li>
+                        <li><i class="fa fa-home"></i> <a href="http://caolvchong.github.com" title="Tom's blog">caolvchong.github.com</a></li>
+                    </ul>
+                </details>
+            </address>
+        </section>
+    </aside>
+
+    <div class="center">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+
+    <aside class="right">
+        {% block sitebar %}
+        <section class="projects">
+            <h3><i class="fa fa-list"></i> 项目</h3>
+            <ul>
+                {% for name, link in PROJECTS %}
+                <li><a href="{{ link }}" title="{{ name }}">{{ name}}</a></li>
+                {% endfor %}
+            </ul>
+        </section>
+        <section class="tags">
+            <h3><i class="fa fa-tags"></i> 标签</h3>
+            <ul>
+                {% for tag in tag_cloud %}
+                <li><a href="{{ SITEURL }}/{{ tag.0.url }}" title="{{ tag.0 }}">{{ tag.0 }}</a></li>
+                {% endfor %}
+            </ul>
+        </section>
+        <section class="links">
+            <h3><i class="fa fa-link"></i> 链接</h3>
+            <ul>
+                {% for name, link in LINKS %}
+                <li><a href="{{ link }}" title="{{ name }}">{{ name}}</a></li>
+                {% endfor %}
+            </ul>
+        </section>
+        <section class="copyright">
+            Copyright &copy; 2014 Tom's blog. All Rights Reserved.
+        </section>
+        {% endblock %}
+    </aside>
+
+</div>
+
+{% block script %}{%endblock%}
+{% include 'includes/analytics.html' %}
+</body>
+</html>

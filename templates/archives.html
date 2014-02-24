@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ SITEURL}}/static/themes/default/css/archives.css"/>
+{% endblock head %}
+
+
+{% block content %}
+<div class="list archives-box">
+    <h1 class="head-title">归档</h1>
+
+    <div class="time-line">
+        <div class="time-header"><i class="fa fa-clock-o"></i></div>
+        {% for year, date_year in dates|groupby( 'date.year' )|sort(reverse=True) %}
+        <section>
+            <div class="year">{{year}}</div>
+            {% for month, date_month in date_year|groupby( 'date.month' )|sort(reverse=True) %}
+            <div class="month-box">
+                <div class="month">{{ month }}月<i class="fa fa-dot-circle-o"></i></div>
+                <ul>
+                    {% for article in date_month %}
+                    <li>
+                        <time><i class="fa fa-calendar"></i> {{ article.date|strftime('%d') }}</time>
+                        <a href="{{ SITEURL }}/{{ article.url }}" title="{{ article.title }}" class="article-title">{{ article.title }}</a>
+                        <div class="article-info">
+                            <span class="article-tags">
+                                <i class="fa fa-tags"></i>
+                                {% for tag in article.tags %}
+                                <a href="{{ tag.url }}">{{ tag|capitalize }}</a>{% endfor %}
+                            </span>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </section>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

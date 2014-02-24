@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ SITEURL}}/static/themes/default/css/about.css"/>
+{% endblock head %}
+
+
+{% block content %}
+<section class="about about-me">
+    <div class="about-left">
+        <div class="photo-box photo-box-outer">
+            <div class="photo-box photo-box-inner"></div>
+        </div>
+        <div class="wrapper"><img src="/static/images/aboutme.jpg" alt="my photo"></div>
+    </div>
+    <div class="about-right">
+        <div class="about-title"><em class="username">Tom</em></div>
+        <p>
+            本名洪军钊，人称叫兽，网名草履虫、Tom，无党派人士。
+        </p>
+
+        <p>
+            想写点东西，但一直没空为借口。喜爱足球，是个曼联伪球迷，moyes执教比赛看的少了。
+        </p>
+
+        <p>
+            计算机科班，自认为技术方面还达不到自己所想的专业程度，现在主要做前端方面。
+        </p>
+
+        <p>
+            理想都是小时候的，如果算的话。现在细想起来好像没有了，剩下一些庸俗的想法，多赚点钱，尽量在这个不那么靠谱的生存大环境中靠谱一些，让家人过得开心幸福一些。
+        </p>
+
+        <p>
+            联系方式侧边栏留了，尽量通过邮件方式联系<em>caolvchong[at]gmail.com</em>，如果你觉得需要的话。
+        </p>
+    </div>
+</section>
+<section class="about about-blog">
+    <div class="about-title">关于博客</div>
+    <p>本blog使用pelican，主题可以从这里获取。</p>
+
+    <p>
+        如果你想转载这里的文章，请保留文章末尾的版权说明（如以下格式）：
+        {% include 'includes/article-copyright.html' %}
+    </p>
+</section>
+
+{% include 'includes/pagination.html' %}
+{% endblock content %}

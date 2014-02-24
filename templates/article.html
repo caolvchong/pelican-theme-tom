@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title }} - {{ SITENAME }} {% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ SITEURL}}/static/themes/default/css/article.css"/>
+{% endblock head %}
+
+{% block content %}
+<article>
+    <div class="article">
+        <h1 class="head-title title"><i class="fa fa-pagelines"></i> <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h1>
+        <div class="article-info">
+            <time><i class="fa fa-calendar"></i> {{ article.date|strftime('%Y-%m-%d') }}</time>
+            <span class="article-tags"><i class="fa fa-tags"></i> {% for tag in article.tags %}<a href="{{ tag.url }}">{{ tag|capitalize }}</a>{% endfor %}</span>
+        </div>
+        {% if article.toc %}
+        <nav class="article-nav">
+            <div>目录</div>
+            {{ article.toc }}
+        </nav>
+        {% endif %}
+        <div class="article-content">{{ article.content }}</div>
+
+        {% include 'includes/article-copyright.html' %}
+    </div>
+
+    <div class="article-bar">
+        <ul class="article-neighbors">
+            <li class="prev">
+                上一篇：
+                {% if article.prev_article %}
+                <a href="{{ SITEURL }}/{{ article.prev_article.url}}" title="{{ article.prev_article.title }}">{{ article.prev_article.title}}</a>
+                {% else %}
+                <span>没有了</span>
+                {% endif %}
+            </li>
+
+            <li class="prev">
+                下一篇：
+                {% if article.next_article %}
+                <a href="{{ SITEURL }}/{{ article.next_article.url}}" title="{{ article.next_article.title }}">{{ article.next_article.title}}</a>
+                {% else %}
+                <span>没有了</span>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+
+</article>
+
+{% include 'includes/comment.html' %}
+{% endblock content %}
+
+{% block script %}
+<script>seajs.use('dist/app/article/index.js');</script>
+{% endblock script %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ SITEURL}}/static/themes/default/css/tag.css"/>
+{% endblock head %}
+
+
+{% block content %}
+<div class="list tag-box">
+    <h1 class="head-title">tag: {{ tag }}</h1>
+    <ul>
+        {% for article in articles_page.object_list %}
+        <li>
+            <span><a href="{{ SITEURL }}/{{ article.url }}" title="{{ article.title }}">{{ article.title }}</a></span>
+            <time><i class="fa fa-calendar"></i> {{ article.date|strftime('%Y-%m-%d') }}</time>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% include 'includes/pagination.html' %}
+{% endblock content %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="articles">
+{% for article in articles_page.object_list %}
+    <article>
+        <div class="article">
+            <h1 class="head-title title"><i class="fa fa-pagelines"></i> <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h1>
+            <div class="article-info">
+                <time><i class="fa fa-calendar"></i> {{ article.date|strftime('%Y-%m-%d') }}</time>
+                <span class="article-tags"><i class="fa fa-tags"></i> {% for tag in article.tags %}<a href="{{ tag.url }}">{{ tag|capitalize }}</a>{% endfor %}</span>
+            </div>
+
+            <div class="article-content">{{ article.summary }}</div>
+        </div>
+
+        <div class="article-bar">
+            <a href="{{ SITEURL }}/{{ article.url }}" title="{{ article.title }}" class="read-more">阅读全文</a>
+        </div>
+    </article>
+{% endfor %}
+</div>
+
+{% include 'includes/pagination.html' %}
+{% endblock content %}

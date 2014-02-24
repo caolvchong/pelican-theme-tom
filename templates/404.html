@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ SITEURL}}/static/themes/default/css/404.css"/>
+{% endblock head %}
+
+
+{% block content %}
+<div class="not-found">
+    <h1 class="head-title">404 Not Found</h1>
+    <div class="not-found-content">
+        <p>很遗憾，你要访问的资源已经不存在了，你可以访问 <a href="/" title="首页">这里</a> 获取更多的内容</p>
+    </div>
+</div>
+{% endblock content %}
