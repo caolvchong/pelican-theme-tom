@@ -1,5 +1,6 @@
 .DS_Store
 .sass-cache
+.cache
 *.iml
 .idea/
 .ipr
